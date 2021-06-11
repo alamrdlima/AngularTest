@@ -1,0 +1,8 @@
+body {
+    width: auto;
+    min-width: auto;
+    height: auto;
+    min-height: 975px;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(30deg, #fff 50%, #004E95 50%);
+}

@@ -1,0 +1,66 @@
+<br><br><br><br><br><br>
+<h4> {{ tituloL }} </h4>
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <div class="text-center mt-1 mb-1">
+                <form onsubmit="return false;">
+                    <input
+                        class="form-control"
+                        type="search"
+                        placeholder="Digite o [postId]: '1' ou '2', etc... para exibir a lista de comentários !"
+                        autofocus
+                        (keyup)="filtro = $event.target.value"
+                        (keydown.enter)="filtrar()"
+                    >
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2g">
+            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Clique aqui para buscar um fundo" (click)="filtrar()">
+                <i class="fa fa-search fa-lg"></i> BUSCAR        
+            </button>
+        </div>  
+    </div> 
+</div>    
+<hr>
+
+<h5> {{ tituloResultadoBusca }} </h5>
+<br>
+
+<div class="alert alert-primary" *ngIf="msgSemResultado" role="alert">
+    <center><i class="fa fa-search fa-lg"></i> Você ainda não realizou nenhuma busca !</center>
+</div>    
+
+<div class="alert alert-danger" *ngIf="msgParaArrayVazio; else " role="alert">
+    <center><i class="fa fa-exclamation-triangle fa-lg"></i> Nenhum valor encontrado !</center>
+</div>  
+
+<ng-template #carregandoErro>
+    <div *ngIf="error$ | async; else carregando">
+        <div class="alert alert-warning" role="alert">
+            <center><i class="fa fa-exclamation-triangle fa-lg"></i> Só serão permitidos resultados de busca através do [postId] !</center>
+            <center>Realize novamente com [postId]: '1' ou '2', etc... para exibir a lista de comentários.</center>
+        </div>  
+    </div>
+    <ng-template #carregando>
+        <div class="text-center">
+            <div class="spinner-border text-primary" *ngIf="mostraSpinnerPesquisar" role="status" id="loader">    
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>              
+    </ng-template>
+</ng-template>
+
+<div *ngIf="comments$ | async as comments; else carregandoErro">
+    <totvs-comment
+        *ngFor=" let comment of comments" 
+            [postId]=" comment.postId "
+            [id]=" comment.id "
+            [name]=" comment.name"
+            [email]=" comment.email "
+            [body]=" comment.body " >
+     </totvs-comment>
+</div>

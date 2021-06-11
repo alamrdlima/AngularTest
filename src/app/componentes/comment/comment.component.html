@@ -1,0 +1,43 @@
+<ngb-accordion id="estilo">
+    <ngb-panel title=" postId: {{ postId }} - id: {{ id }} - {{ email }}">
+        <ng-template ngbPanelContent>
+            <table class="" width="" valign="">
+                <tbody>  
+                    <tr>
+                        <center><i class="fa fa-user fa-lg"></i>
+                        <h5>Nome </h5></center>
+                        <td class="" height="">
+                            <p>     
+                                {{ name }}
+                            </p>
+                            <hr>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <center><i class="fa fa-envelope fa-lg"></i>
+                        <h5>Email </h5></center>
+                        <td class="" height="">
+                            <p>                       
+                                {{ email }}
+                            </p>
+                            <hr>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <center><i class="fa fa-comment fa-lg"></i>
+                        <h5>Conteúdo </h5></center>
+                        <td class="" height="">
+                            <p>                       
+                                {{ body }}
+                            </p>
+                        </td>
+                    </tr>          
+                </tbody>
+            </table>
+            <div class="alert alert-primary" role="alert">
+                <center>Para mais detalhes clique em       
+                <totvs-modal-lista></totvs-modal-lista></center>
+            </div>    
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
